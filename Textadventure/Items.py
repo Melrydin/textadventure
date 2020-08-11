@@ -16,7 +16,7 @@ class Potion(Item):
 class HealthPotion(Potion):
     def __init__(self, weight, worth, regenerated_health):
         Potion.__init__(self, weight, worth)
-        self.regenerated_health = regenerated_health
+        self.regenerated_health = regenerated_health        
 
 class ManaPotion(Potion):
     def __init__(self, weight, worth, regenerated_mana):
@@ -27,3 +27,9 @@ class EndurancePotion(Potion):
     def __init__(self, weight, worth, regenerated_endurance):
         Potion.__init__(self, weight, worth)
         self.regenerated_endurance = regenerated_endurance
+
+armor_list = ["Copper_Armor"]
+weapon_list = ["rusty_Sword"]
+potion_list = ["Health_Potion"]
+
+Item_list = [armor_list, weapon_list, potion_list]

@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 11 13:29:49 2020
-
-@author: Clemens
-"""
 import enemies
 import random
 
@@ -19,7 +14,7 @@ class field:
 
     @staticmethod
     def gen_random():
-        rand = random.randint(0,2)
+        rand = random.randint(0,3)
         enemies_rand = enemies.liste[random.randint(0, len(enemies.liste) - 1)]
         if rand == 0:
             return field([])
@@ -27,6 +22,8 @@ class field:
             return field([enemies_rand])
         elif rand == 2:
             return field([enemies_rand, enemies_rand])
+        elif rand == 3:
+            return field([enemies_rand, enemies_rand, enemies_rand])
 
 class Map:
     def __init__(self, width, height):

@@ -3,38 +3,46 @@ import maps
 import sys
 import enemies
 import Items
-import random
 
-drop_list = []
+
 game_inventory = []
-    
+
+# go to the next field forward  
 def forward(p, m):
     m.forward()
-    
+
+# go to the next field right
 def right(p, m):
     m.right()
-    
+
+# go to the next field left    
 def left(p, m):
     m.left()
-    
+
+# go to the next field backwards  
 def backwards(p, m):
     m.backwards()
-    
+
+# save your current game
 def save():
     pass
-
+# load old game
 def load():
     pass
 
+# exit game
 def quit_game(p, m):
     print("Du begehst Selbstmord und verlaesst diese Welt")
     sys.exit(0)
 
+# pick up items and stow them in your inventory
 def pickup(p, m):
-    game_inventory.append(drop_list[0])
-    drop_list.clear()
+    for i in range(len(Items.drop_list)):    
+        game_inventory.append(Items.drop_list[i])
+        print(game_inventory)
+    Items.drop_list.clear()
     
-
+# fight with Enemies
 def fight(p, m):
     enemies = m.get_enemies()
     while len(enemies) > 0:
@@ -44,26 +52,27 @@ def fight(p, m):
         for i in enemies:
             p.get_hit(i.ad)
         print("Du wurdest verwundet und hast noch " + str(p.hp) + " HP")
-    rand = random.randint(0,1)
-    if rand == 1:
-        item_category = Items.Item_list[random.randint(0, len(Items.Item_list) - 1)]
-        item = item_category[random.randint(0, len(item_category) - 1)]
-        drop_list.append(item)
+        Items.loot()
 
+# regenerate HP
 def rest(p, m):
     p.rest()
 
+# run away
 def run_away(p, m):
     pass
-    
+
+# list all Commands
 def print_help(p, m):
     for i in Commands:
         print(i)
 
+# look in your inventory
 def inventory(p, m):
     for i in game_inventory:
         print(i)
-
+        
+# Player Commands
 Commands = {
     "hilfe": print_help,
     "quit": quit_game,
@@ -80,9 +89,10 @@ Commands = {
     "inventory": inventory
     }
 
+# game loop
 if __name__ == "__main__":
     name = input("Wie heißt du? ")
-    p = enemies.player(name, 1000, 100)
+    p = enemies.player(name, 500, 50)
     maps = maps.Map(5,5)
     print("gib \"hilfe\" ein um eine übersicht der Befehle zu erhalten.\n")
     while True:
@@ -94,12 +104,10 @@ if __name__ == "__main__":
                 Commands[command[0]](p, maps)
         elif command[0] not in Commands:
             print("Du rennst im Keis und tuhst garnichts.")
-        if len(drop_list) > 0:
+        if len(Items.drop_list) > 0:
             print("Du durchsuchst die Leichen und findest")
-            for i in drop_list:
+            for i in Items.drop_list:
                 print(i)
-            if command[0] != "pickup":
-                drop_list.clear()
         else:
             maps.print_state()
-            drop_list.clear()
+            Items.drop_list.clear()

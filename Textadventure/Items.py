@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 11 13:23:58 2020
+import random
+import Items
 
-@author: Clemens
-"""
+drop_list = []
+
+# roll droop changs and loot
+def loot():
+    rand = random.randint(0,2)
+    item_quantity = random.randint(0,3)
+    if rand == 1:
+        for i in range(item_quantity):
+            item_category = Items.Item_list[random.randint(0, len(Items.Item_list) - 1)]
+            item = item_category[random.randint(0, len(item_category) - 1)]
+            drop_list.append(item)
+
 class Item:
     def __init__(self, weight, worth):
         self.weight = weight

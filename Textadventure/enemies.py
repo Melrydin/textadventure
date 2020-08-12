@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 11 13:19:49 2020
 
-@author: Clemens
-"""
+# basic commands for Player and Enemies
 class Character:
     def __init__(self, hp, ad, name):
         self.hp = hp
@@ -20,7 +17,8 @@ class Character:
     
     def die(self):
         print( str(self.name) + " ist gestorben")
-        
+
+# Player Character
 class player(Character):
     def __init__(self, name, hp, ad):
         Character.__init__(self, hp, ad, name)
@@ -31,11 +29,12 @@ class player(Character):
         
     def rest(self):
         self.hp = self.max_hp
-
+# Goblin enemie
 class Goblin(Character):
     def __init__(self):
         Character.__init__(self, 100, 10, "Goblin")
 
+# Ork enemie
 class Ork(Character):
     def __init__(self):
         Character.__init__(self, 200, 20, "Ork")

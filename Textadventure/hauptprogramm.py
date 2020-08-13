@@ -39,24 +39,24 @@ def quit_game(p, m):
 def pickup(p, m):
     for i in range(len(Items.drop_list)):    
         game_inventory.append(Items.drop_list[i])
-        print(game_inventory)
     Items.drop_list.clear()
     
 # fight with Enemies
 def fight(p, m):
     enemies = m.get_enemies()
     while len(enemies) > 0:
-        enemies[0].get_hit(p.ad)
+        enemies[0].get_hit(p.attack)
         if enemies[0].is_dead():
             enemies.remove(enemies[0])
+            Items.loot()
         for i in enemies:
-            p.get_hit(i.ad)
+            p.get_hit(i.attack)
         print("Du wurdest verwundet und hast noch " + str(p.hp) + " HP")
-        Items.loot()
 
 # regenerate HP
 def rest(p, m):
     p.rest()
+    print("Du hast nun wieder " + str(int(p.hp)) + " HP")
 
 # run away
 def run_away(p, m):
@@ -70,7 +70,7 @@ def print_help(p, m):
 # look in your inventory
 def inventory(p, m):
     for i in game_inventory:
-        print(i)
+        print(i.name)
         
 # Player Commands
 Commands = {
@@ -89,12 +89,14 @@ Commands = {
     "inventory": inventory
     }
 
+Commands_not_print_state = ["hilfe", "pickup", "fight", "save", "load", "rest", "inventory"]
+
 # game loop
 if __name__ == "__main__":
     name = input("Wie heißt du? ")
-    p = enemies.player(name, 500, 50)
+    p = enemies.player(name, 500, 50, 100, 100)
     maps = maps.Map(5,5)
-    print("gib \"hilfe\" ein um eine übersicht der Befehle zu erhalten.\n")
+    print("gib \"hilfe\" ein um eine uebersicht der Befehle zu erhalten.\n")
     while True:
         command = input(">>>").lower().split(" ")
         if command[0] in Commands:
@@ -104,10 +106,13 @@ if __name__ == "__main__":
                 Commands[command[0]](p, maps)
         elif command[0] not in Commands:
             print("Du rennst im Keis und tuhst garnichts.")
-        if len(Items.drop_list) > 0:
+        if command[0] not in Commands:
+            pass
+        elif len(Items.drop_list) > 0:
             print("Du durchsuchst die Leichen und findest")
             for i in Items.drop_list:
-                print(i)
-        else:
+                print(i.name)
+        elif command[0] not in Commands_not_print_state:
             maps.print_state()
+        else:
             Items.drop_list.clear()

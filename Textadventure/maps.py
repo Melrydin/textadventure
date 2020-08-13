@@ -5,7 +5,6 @@ import random
 class field:
     def __init__(self, enemies):
         self.enemies = enemies
-        self.loot = []
     
     def print_state(self):
         print("Du siehst dich um und endeckst")
@@ -15,7 +14,7 @@ class field:
     @staticmethod
     def gen_random():
         rand = random.randint(0,3)
-        enemies_rand = enemies.liste[random.randint(0, len(enemies.liste) - 1)]
+        enemies_rand = enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)]
         if rand == 0:
             return field([])
         elif rand == 1:

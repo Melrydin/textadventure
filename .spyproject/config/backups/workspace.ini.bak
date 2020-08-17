@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['main_program.py', 'maps.py', 'enemies.py', 'inventory.py', 'items.py', 'potions.py', 'health_potion.py', 'endurance_potion.py', 'mana_potion.py']
+recent_files = ['Textadventure\\main_program.py']
 

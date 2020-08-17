@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import random
-from items.consumables.potions.potions import potion_list
+from items.consumables.potions.mana_potion import mana_potion_list
+from items.consumables.potions.endurance_potion import endurance_potion_list
+from items.consumables.potions.health_potion import health_potion_list
+
+potion_list = [mana_potion_list, endurance_potion_list, health_potion_list]
 
 drop_list = []
 item_list = [potion_list]

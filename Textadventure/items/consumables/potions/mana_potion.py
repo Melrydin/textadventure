@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from items.consumables.potions.potions import ManaPotion
+class Potion():
+    def __init__(self, level, name, weight, worth):
+        self.level = level
+        self.name = name
+        self.weight = weight
+        self.worth = worth
+
+class ManaPotion(Potion):
+    def __init__(self, level, name, weight, worth, regenerated_mana):
+        Potion.__init__(self, level, name, weight, worth)
+        self.regenerated_mana = regenerated_mana
 
 class ManaPotion_1(ManaPotion):
     def __init__(self):

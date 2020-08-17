@@ -1,6 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from potions import EndurancePotion
+class Potion():
+    def __init__(self, level, name, weight, worth):
+        self.level = level
+        self.name = name
+        self.weight = weight
+        self.worth = worth
+
+class EndurancePotion(Potion):
+    def __init__(self, level, name, weight, worth, regenerated_endurance):
+        Potion.__init__(self, level, name, weight, worth)
+        self.regenerated_endurance = regenerated_endurance
         
 class EndurancePotion_1(EndurancePotion):
     def __init__(self):

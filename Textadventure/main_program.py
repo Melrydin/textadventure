@@ -3,7 +3,7 @@ import maps
 import sys
 import enemies
 import inventory
-from items.items import items
+from items.items import loot,drop_list
 
 # go to the next field forward  
 def forward(p, m):
@@ -24,6 +24,7 @@ def backwards(p, m):
 # save your current game
 def save():
     pass
+
 # load old game
 def load():
     pass
@@ -40,7 +41,7 @@ def fight(p, m):
         enemies[0].get_hit(p.attack)
         if enemies[0].is_dead():
             enemies.remove(enemies[0])
-            items.loot()
+            loot()
         for i in enemies:
             p.get_hit(i.attack)
         print("Du wurdest verwundet und hast noch " + str(p.hp) + " HP")
@@ -58,8 +59,6 @@ def run_away(p, m):
 def print_help(p, m):
     for i in Commands:
         print(i)
-
-
         
 # Player Commands
 Commands = {
@@ -97,11 +96,11 @@ if __name__ == "__main__":
             print("Du rennst im Keis und tuhst garnichts.")
         if command[0] not in Commands:
             pass
-        elif len(items.drop_list) > 0:
+        elif len(drop_list) > 0:
             print("Du durchsuchst die Leichen und findest")
-            for i in items.drop_list:
+            for i in drop_list:
                 print(i.name)
         elif command[0] not in Commands_not_print_state:
             maps.print_state()
         else:
-            items.drop_list.clear()
+            drop_list.clear()

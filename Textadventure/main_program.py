@@ -83,7 +83,7 @@ Commands_not_print_state = ["hilfe", "pickup", "fight", "save", "load", "rest", 
 if __name__ == "__main__":
     name = input("Wie heißt du? ")
     p = enemies.player(name, 500, 50, 100, 100)
-    maps = maps.Map(5,5)
+    maps = maps.Map(10,10)
     print("Gib \"hilfe\" ein um eine uebersicht der Befehle zu erhalten.\n")
     while True:
         command = input(">>>").lower().split(" ")

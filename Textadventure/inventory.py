@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import items
+from items.items import drop_list
 
 game_inventory = []
 
@@ -11,9 +11,14 @@ equip_list = [armor_list,non_armor_list,weapon_list]
 
 # pick up items and stow them in your inventory
 def pickup(p, m):
-    for i in range(len(items.drop_list)):    
-        game_inventory.append(items.drop_list[i])
-    items.drop_list.clear()
+    for i in range(len(drop_list)):
+        # stacking double Items
+        if drop_list[i] in game_inventory:
+            game_inventory[game_inventory.index(drop_list[i])].number_counter()
+        else:
+            # append new Item
+            game_inventory.append(drop_list[i])
+    drop_list.clear()
 
 
 # look in your inventory
@@ -21,7 +26,7 @@ def inventory(p, m):
     print("Gib \"hilfe\" ein um eine uebersicht der Inventar Befehle zu erhalten.\n")
     print(6* "-" + "Inventory" + 6* "-")
     for i in range(len(game_inventory)):
-        print(str(i+1) + ": " + game_inventory[i].name)
+        print(str(i+1) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
         inventory_Commands.update({str(i):i})
     while True:
         inventory_command = input("Inventory >>>").lower().split(" ")
@@ -30,7 +35,7 @@ def inventory(p, m):
                 inventory_Commands[inventory_command[1]](inventory_command[0])
             else:
                 inventory_Commands[inventory_command[0]]()
-        elif inventory_command[0] == "exit_inventory":
+        elif inventory_command[0] == "quit":
             break
         else:
             print("Was tuhst du da? Du wuehlst Sinnlos in deiner Tasche.")
@@ -55,8 +60,14 @@ def disassemble(item_number):
 
 # print invrntory Commsnds
 def print_help():
+    for i in range(len(game_inventory)):
+        inventory_Commands.pop(str(i), None)
     for i in inventory_Commands:
         print(i)
+    print("quit")
+    for i in range(len(game_inventory)):
+        inventory_Commands.update({str(i):i})
+
 
 # Player inventory Commands
 inventory_Commands = {

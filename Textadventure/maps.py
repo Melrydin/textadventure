@@ -13,16 +13,15 @@ class field:
 
     @staticmethod
     def gen_random():
-        rand = random.randint(0,3)
-        enemies_rand = enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)]
+        rand = random.randint(1,3)
         if rand == 0:
             return field([])
         elif rand == 1:
-            return field([enemies_rand])
+            return field([enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)]])
         elif rand == 2:
-            return field([enemies_rand, enemies_rand])
+            return field([enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)], enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)]])
         elif rand == 3:
-            return field([enemies_rand, enemies_rand, enemies_rand])
+            return field([enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)], enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)], enemies.enemie_list[random.randint(0, len(enemies.enemie_list) - 1)]])
 
 class Map:
     def __init__(self, width, height):

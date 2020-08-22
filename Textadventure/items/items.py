@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import random
 from items.consumables.potions.mana_potion import mana_potion_list
 from items.consumables.potions.endurance_potion import endurance_potion_list

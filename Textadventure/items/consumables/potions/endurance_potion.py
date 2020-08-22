@@ -9,20 +9,22 @@ class EndurancePotion():
         self.weight = weight
         self.worth = worth
         
-    def number_counter(self):
+    def number_counter_plus(self):
         self.number = self.number + 1
-
         
+    def number_counter_minus(self):
+        self.number = self.number - 1
+
 class EndurancePotion_1(EndurancePotion):
     def __init__(self):
-        EndurancePotion.__init__(self, 1, 1, "EndurancPotion_1", 1, 3, 10)
+        EndurancePotion.__init__(self, 1, 1, "EndurancePotion_1", 1, 3, 10)
         
 class EndurancePotion_2(EndurancePotion):
     def __init__(self):
-        EndurancePotion.__init__(self, 5, 1, "EndurancPotion_2", 1, 3, 20)
+        EndurancePotion.__init__(self, 5, 1, "EndurancePotion_2", 1, 3, 20)
         
 class EndurancePotion_3(EndurancePotion):
     def __init__(self):
-        EndurancePotion.__init__(self, 10, 1, "EndurancPotion_3", 1, 3, 40)
+        EndurancePotion.__init__(self, 10, 1, "EndurancePotion_3", 1, 3, 40)
     
 endurance_potion_list = [EndurancePotion_1(), EndurancePotion_2(), EndurancePotion_3()]

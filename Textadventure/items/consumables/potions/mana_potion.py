@@ -9,9 +9,12 @@ class ManaPotion():
         self.weight = weight
         self.worth = worth
         
-    def number_counter(self):
-        self.number += 1
-
+    def number_counter_plus(self):
+        self.number = self.number + 1
+        
+    def number_counter_minus(self):
+        self.number = self.number - 1
+        
 class ManaPotion_1(ManaPotion):
     def __init__(self):
         ManaPotion.__init__(self, 1, 1, "ManaPotion_1", 1, 3, 10)

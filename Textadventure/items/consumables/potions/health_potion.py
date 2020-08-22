@@ -9,10 +9,12 @@ class HealthPotion():
         self.weight = weight
         self.worth = worth
         
-    def number_counter(self):
-        self.number += 1
+    def number_counter_plus(self):
+        self.number = self.number + 1
         
-   
+    def number_counter_minus(self):
+        self.number = self.number - 1
+        
 class HealthPotion_1(HealthPotion):
     def __init__(self):
         HealthPotion.__init__(self, 1, 1, "HealthPotion_1", 1, 3, 10)

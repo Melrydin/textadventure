@@ -88,7 +88,7 @@ if __name__ == "__main__":
     # Player Name
     name = input("Wie heißt du? ")
     # Player start stats
-    p = enemies.player(name, 500, 50, 100, 100)
+    p = enemies.player(name, 500, 1, 50, 100, 100)
     # generate Map
     maps = maps.Map(10,10)
     print("Gib \"hilfe\" ein um eine uebersicht der Befehle zu erhalten.\n")

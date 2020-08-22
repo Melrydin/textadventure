@@ -28,7 +28,7 @@ def inventory(p, m):
     print(6* "-" + "Inventory" + 6* "-")
     for i in range(len(game_inventory)):
         print(str(i+1) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
-        inventory_Commands.update({str(i):i})
+        inventory_Commands.update({str(i):senseless})
     while True:
         inventory_command = input("Inventory >>>").lower().split(" ")
         if inventory_command[0] in inventory_Commands:
@@ -39,7 +39,7 @@ def inventory(p, m):
         elif inventory_command[0] == "quit":
             break
         else:
-            print("Was tuhst du da? Du wuehlst Sinnlos in deiner Tasche.")
+            senseless()
         print("")
         print(6* "-" + "Inventory" + 6* "-")
         for i in range(len(game_inventory)):
@@ -59,9 +59,18 @@ def disarm(item_number):
 def disassemble(item_number):
     pass
 
+# drink potions
 def drink(p, item_number):
     p.drink(item_number)
-
+    if game_inventory[int(item_number)-1].number > 1:
+        game_inventory[int(item_number)-1].number_counter_minus()
+    else:
+        del game_inventory[int(item_number)-1]
+        
+# senseless action
+def senseless():
+    print("Was tuhst du da? Du wuehlst Sinnlos in deiner Tasche.")
+    
 # print invrntory Commsnds
 def print_help():
     for i in range(len(game_inventory)):
@@ -71,7 +80,6 @@ def print_help():
     print("quit")
     for i in range(len(game_inventory)):
         inventory_Commands.update({str(i):i})
-
 
 # Player inventory Commands
 inventory_Commands = {

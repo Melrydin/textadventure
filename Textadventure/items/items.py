@@ -4,11 +4,13 @@ import random
 from items.consumables.potions.mana_potion import mana_potion_list
 from items.consumables.potions.endurance_potion import endurance_potion_list
 from items.consumables.potions.health_potion import health_potion_list
+from items.equipment.armor.head import head_list
 
 potion_list = [mana_potion_list, endurance_potion_list, health_potion_list]
+armor_non_equip_list = [head_list]
 
 drop_list = []
-item_list = [potion_list]
+item_list = [potion_list, armor_non_equip_list]
 
 # roll droop changs and loot
 def loot():

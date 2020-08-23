@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from items.items import drop_list
+from items.items import drop_list, potion_list
 
 
 game_inventory = []
@@ -14,12 +14,15 @@ equip_list = [armor_list,non_armor_list,weapon_list]
 def pickup(p, m):
     for i in range(len(drop_list)):
         # stacking double Items
-        if drop_list[i] in game_inventory:
-            game_inventory[game_inventory.index(drop_list[i])].number_counter_plus()
-        else:
-            # append new Item
-            game_inventory.append(drop_list[i])
+        for potion_art in potion_list:
+            for potion in potion_art:
+                if drop_list[i].name in potion.name:
+                    if drop_list[i] in game_inventory:
+                        game_inventory[game_inventory.index(drop_list[i])].number_counter_plus()
+        game_inventory.append(drop_list[i])
     drop_list.clear()
+    # sort inventory to name
+    game_inventory.sort(key=lambda item: item.name, reverse=True)
 
 
 # look in your inventory
@@ -48,15 +51,15 @@ def inventory(p, m):
         inventory_Commands.pop(str(i), None)
 
 # equip equipment
-def equip(item_number):
+def equip(p, item_number):
     pass
 
 # disarm equipment
-def disarm(item_number):
+def disarm(p, item_number):
     pass
 
 # disassemble equipment or Potion
-def disassemble(item_number):
+def disassemble(p, item_number):
     pass
 
 # drink potions
@@ -66,6 +69,9 @@ def drink(p, item_number):
         game_inventory[int(item_number)-1].number_counter_minus()
     else:
         del game_inventory[int(item_number)-1]
+# show item Details
+def details(p, item_number):
+    return game_inventory[int(item_number)].show_details()
         
 # senseless action
 def senseless():
@@ -87,6 +93,6 @@ inventory_Commands = {
     "equip": equip,
     "disarm": disarm,
     "drink": drink,
-    "disassemble": disassemble
+    "disassemble": disassemble,
+    "details": details
     }
-

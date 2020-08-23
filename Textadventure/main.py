@@ -88,7 +88,7 @@ if __name__ == "__main__":
     # Player Name
     name = input("Wie heißt du? ")
     # Player start stats
-    p = enemies.player(name, 500, 1, 50, 100, 100)
+    p = enemies.player(name, 1, 500, 50, 100, 100)
     # generate Map
     maps = maps.Map(10,10)
     print("Gib \"hilfe\" ein um eine uebersicht der Befehle zu erhalten.\n")
@@ -107,7 +107,7 @@ if __name__ == "__main__":
         # show Item drops
         elif len(drop_list) > 0:
             print("Du durchsuchst die Leichen und findest")
-            # print drop mames
+            # print drop names
             for i in drop_list:
                 print(i.name)
         elif command[0] not in Commands_not_print_state:

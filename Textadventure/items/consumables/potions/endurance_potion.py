@@ -14,6 +14,14 @@ class EndurancePotion():
         
     def number_counter_minus(self):
         self.number = self.number - 1
+        
+    def show_details(self):
+        print(6* "-" + str(self.name) + 6* "-")
+        print("Level: " + str(self.level))
+        print("Number: " + str(self.number))
+        print("Endurance regeneration: " + str(self.regenerated_endurance))
+        print("Weight: " + str(self.weight))
+        print("Worth: " + str(self.worth))
 
 class EndurancePotion_1(EndurancePotion):
     def __init__(self):

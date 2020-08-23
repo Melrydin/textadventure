@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from inventory import game_inventory
 from items.items import potion_list
 
@@ -34,7 +35,8 @@ class player(Character):
         self.max_endurance = endurance
         
     def die(self):
-        exit("Du bist gestorben. Versuchs nochmal.")
+        print("Du bist gestorben. Versuchs nochmal.")
+        sys.exit()
         
     def rest(self):
         if self.hp < self.max_hp:

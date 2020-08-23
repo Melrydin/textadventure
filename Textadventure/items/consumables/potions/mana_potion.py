@@ -14,6 +14,14 @@ class ManaPotion():
         
     def number_counter_minus(self):
         self.number = self.number - 1
+    
+    def show_details(self):
+        print(6* "-" + str(self.name) + 6* "-")
+        print("Level: " + str(self.level))
+        print("Number: " + str(self.number))
+        print("Mana regeneration: " + str(self.regenerated_mana))
+        print("Weight: " + str(self.weight))
+        print("Worth: " + str(self.worth))
         
 class ManaPotion_1(ManaPotion):
     def __init__(self):

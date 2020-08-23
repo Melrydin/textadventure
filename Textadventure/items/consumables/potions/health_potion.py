@@ -15,6 +15,14 @@ class HealthPotion():
     def number_counter_minus(self):
         self.number = self.number - 1
         
+    def show_details(self):
+        print(6* "-" + str(self.name) + 6* "-")
+        print("Level: " + str(self.level))
+        print("Number: " + str(self.number))
+        print("Heakth regeneration: " + str(self.regenerated_health))
+        print("Weight: " + str(self.weight))
+        print("Worth: " + str(self.worth))
+        
 class HealthPotion_1(HealthPotion):
     def __init__(self):
         HealthPotion.__init__(self, 1, 1, "HealthPotion_1", 1, 3, 10)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from items.items import drop_list, potion_list
 
-
 game_inventory = []
 
 armor_list = []
@@ -23,7 +22,6 @@ def pickup(p, m):
     drop_list.clear()
     # sort inventory to name
     game_inventory.sort(key=lambda item: item.name, reverse=True)
-
 
 # look in your inventory
 def inventory(p, m):
@@ -69,6 +67,7 @@ def drink(p, item_number):
         game_inventory[int(item_number)-1].number_counter_minus()
     else:
         del game_inventory[int(item_number)-1]
+
 # show item Details
 def details(p, item_number):
     return game_inventory[int(item_number)].show_details()

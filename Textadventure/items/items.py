@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import random
-from items.consumables.potions.mana_potion import mana_potion_list
-from items.consumables.potions.endurance_potion import endurance_potion_list
-from items.consumables.potions.health_potion import health_potion_list
-from items.equipment.armor.head import head_list
+from numpy.random import choice
+from items.consumables.potions.mana_potion import mana_potion_dic
+from items.consumables.potions.endurance_potion import endurance_potion_dic
+from items.consumables.potions.health_potion import health_potion_dic
+from items.equipment.armor.head import head_dic
 
-potion_list = [mana_potion_list, endurance_potion_list, health_potion_list]
-armor_non_equip_list = [head_list]
+potion_list = [mana_potion_dic, endurance_potion_dic, health_potion_dic]
+
+armor_non_equip_list = [head_dic]
 
 drop_list = []
 item_list = [potion_list, armor_non_equip_list]
@@ -20,5 +22,11 @@ def loot():
         for i in range(item_quantity):
             item_category = item_list[random.randint(0, len(item_list) - 1)]
             item_under_category = item_category[random.randint(0, len(item_category) - 1)]
-            item = item_under_category[random.randint(0, len(item_under_category)- 1)]
+            item_rarity = item_under_category[drop_chance()]
+            item = item_rarity[random.randint(0, len(item_rarity)-1)]
             drop_list.append(item)
+            
+def drop_chance():
+    items = "common","uncommon","rare","super rare"
+    probabilities = [0.5,0.35,0.1,0.05]
+    return str(choice(items , p=probabilities))

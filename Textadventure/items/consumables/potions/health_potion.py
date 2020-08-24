@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 class HealthPotion():
-    def __init__(self, level, number, name, weight, worth, regenerated_health):
+    def __init__(self, level, equipment_category, number, name, weight, worth, regenerated_health):
         self.regenerated_health = regenerated_health
         self.level = level
         self.number = number
         self.name = name
         self.weight = weight
         self.worth = worth
+        self.equipment_category = equipment_category
         
     def number_counter_plus(self):
         self.number = self.number + 1
@@ -18,6 +19,7 @@ class HealthPotion():
     def show_details(self):
         print(6* "-" + str(self.name) + 6* "-")
         print("Level: " + str(self.level))
+        print("Kategorie: " + str(self.equipment_category))
         print("Number: " + str(self.number))
         print("Heakth regeneration: " + str(self.regenerated_health))
         print("Weight: " + str(self.weight))
@@ -25,14 +27,19 @@ class HealthPotion():
         
 class HealthPotion_1(HealthPotion):
     def __init__(self):
-        HealthPotion.__init__(self, 1, 1, "HealthPotion_1", 1, 3, 10)
+        HealthPotion.__init__(self, 1, "common", 1, "HealthPotion_1", 1, 3, 10)
 
 class HealthPotion_2(HealthPotion):
     def __init__(self):
-        HealthPotion.__init__(self, 5, 1, "HealthPotion_2", 1, 3, 20)
+        HealthPotion.__init__(self, 5, "common", 1, "HealthPotion_2", 1, 3, 20)
 
 class HealthPotion_3(HealthPotion):
     def __init__(self):
-        HealthPotion.__init__(self, 10, 1, "HealthPotion_3", 1, 3, 40)
+        HealthPotion.__init__(self, 10, "common", 1, "HealthPotion_3", 1, 3, 40)
         
 health_potion_list = [HealthPotion_1(), HealthPotion_2(), HealthPotion_3()]
+
+health_potion_dic = {"common": health_potion_list,
+                    "uncommon": health_potion_list,
+                    "rare": health_potion_list,
+                    "super rare": health_potion_list}

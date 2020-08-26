@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import sys
+
 from inventory import game_inventory
 from items.items import potion_list
+
 
 # basic commands for Player and Enemies
 class Character:

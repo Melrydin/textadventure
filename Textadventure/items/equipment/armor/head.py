@@ -58,7 +58,7 @@ class super_rare(rare):
         rare.__init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1,  property_2, property_3)
         self.property_4 = property_4        
 
-# ----------------------------------------------------- Items ---------------------------------------------------------------------
+# -------------------------------------------------------------------- Items --------------------------------------------------------------------
 
 class common_head_1(head):
     def __init__(self):

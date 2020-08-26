@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from items.items import drop_list
 
 game_inventory = []
@@ -13,9 +14,13 @@ equip_list = [armor_list,non_armor_list,weapon_list]
 def pickup(p, m):
     for i in range(len(drop_list)):
         # stacking double Items
-        if drop_list[i] in game_inventory:
-            game_inventory[game_inventory.index(drop_list[i])].number_counter_plus()
-        game_inventory.append(drop_list[i])
+        if drop_list[i] in game_inventory:    
+            if "Potion" in drop_list[i].name:
+                game_inventory[game_inventory.index(drop_list[i])].number_counter_plus()
+            else:
+                game_inventory.append(drop_list[i])
+        else:
+            game_inventory.append(drop_list[i])
     drop_list.clear()
     # sort inventory to name
     game_inventory.sort(key=lambda item: item.name, reverse=True)

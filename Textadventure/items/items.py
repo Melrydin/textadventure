@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import random
+
 from numpy.random import choice
-from items.consumables.potions.mana_potion import mana_potion_dic
+
 from items.consumables.potions.endurance_potion import endurance_potion_dic
 from items.consumables.potions.health_potion import health_potion_dic
+from items.consumables.potions.mana_potion import mana_potion_dic
 from items.equipment.armor.head import head_dic
 
 potion_list = [mana_potion_dic, endurance_potion_dic, health_potion_dic]

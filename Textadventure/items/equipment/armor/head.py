@@ -19,8 +19,9 @@ def property_4(level):
     return("Proberty_4")
 
 class head():
-    def __init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1):
+    def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1):
         self.level = level
+        self.drop_chanc_category = drop_chanc_category
         self.equipment_category = equipment_category
         self.number = number
         self.name = name
@@ -34,6 +35,7 @@ class head():
     def show_details(self):
         print(6* "-" + str(self.name) + 6* "-")
         print("Level: " + str(self.level))
+        print("Ausrüstungs_Seltenheit: " + str(self.drop_chanc_category))
         print("Kategorie: " + str(self.equipment_category))
         print("Armor: " + str(self.armor))
         print("Magical property: " + str(self.property_1))
@@ -44,37 +46,37 @@ class head():
         print("Worth: " + str(self.worth))
         
 class uncommon(head):
-    def __init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1, property_2):
-        head.__init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1)
+    def __init__(self, level, drop_chanc_category,equipment_category, number, name, weight, worth, durability, armor, property_1, property_2):
+        head.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1)
         self.property_2 = property_2
         
 class rare(uncommon):
-    def __init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1, property_2, property_3):
-        uncommon.__init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1,  property_2)
+    def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1, property_2, property_3):
+        uncommon.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1,  property_2)
         self.property_3 = property_3
 
 class super_rare(rare):
-    def __init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1, property_2, property_3, property_4):
-        rare.__init__(self, level, equipment_category, number, name, weight, worth, durability, armor, property_1,  property_2, property_3)
+    def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1, property_2, property_3, property_4):
+        rare.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, durability, armor, property_1,  property_2, property_3)
         self.property_4 = property_4        
 
 # -------------------------------------------------------------------- Items --------------------------------------------------------------------
 
 class common_head_1(head):
     def __init__(self):
-        head.__init__(self, 1, "common", 1, "Head_1", 5, 10, 10, armor(1), property_1(1))
+        head.__init__(self, 1, "common", "Head", 1, "Head_1", 5, 10, 10, armor(1), property_1(1))
         
 class uncommon_head_1(uncommon):
     def __init__(self):
-        uncommon.__init__(self, 5, "uncommon", 1, "Head_2", 5, 10, 10, armor(5), property_1(5), property_2(5))
+        uncommon.__init__(self, 5, "uncommon", "Head", 1, "Head_2", 5, 10, 10, armor(5), property_1(5), property_2(5))
         
 class rare_head_1(rare):
     def __init__(self):
-        rare.__init__(self, 10, "rare", 1, "Head_3", 5, 10, 10, armor(10), property_1(10), property_2(10), property_3(10))
+        rare.__init__(self, 10, "rare", "Head", 1, "Head_3", 5, 10, 10, armor(10), property_1(10), property_2(10), property_3(10))
 
 class super_rare_head_1(super_rare):
     def __init__(self):
-        super_rare.__init__(self, 1, "super_rare", 1, "Head_1", 5, 10, 10, armor(1), property_1(1), property_2(1), property_3(1), property_4(1))
+        super_rare.__init__(self, 1, "super_rare", "Head", 1, "Head_1", 5, 10, 10, armor(1), property_1(1), property_2(1), property_3(1), property_4(1))
         
 common_head_list = [common_head_1()]
 

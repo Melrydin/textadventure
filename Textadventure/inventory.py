@@ -11,7 +11,7 @@ weapon_list = []
 equip_list = [armor_list,non_armor_list,weapon_list]
 
 # pick up items and stow them in your inventory
-def pickup(p, m):
+def pickup(player, maps):
     for i in range(len(drop_list)):
         # stacking double Items
         if drop_list[i] in game_inventory:    
@@ -26,7 +26,7 @@ def pickup(p, m):
     game_inventory.sort(key=lambda item: item.name, reverse=True)
 
 # look in your inventory
-def inventory(p, m):
+def inventory(player, maps):
     print("Gib \"hilfe\" ein um eine uebersicht der Inventar Befehle zu erhalten.\n")
     print(6* "-" + "Inventory" + 6* "-")
     for i in range(len(game_inventory)):
@@ -36,7 +36,7 @@ def inventory(p, m):
         inventory_command = input("Inventory >>>").lower().split(" ")
         if inventory_command[0] in inventory_Commands:
             if len(inventory_command) > 1:
-                inventory_Commands[inventory_command[1]](p, inventory_command[0])
+                inventory_Commands[inventory_command[1]](player, inventory_command[0])
             else:
                 inventory_Commands[inventory_command[0]]()
         elif inventory_command[0] == "quit":
@@ -51,27 +51,27 @@ def inventory(p, m):
         inventory_Commands.pop(str(i), None)
 
 # equip equipment
-def equip(p, item_number):
+def equip(player, item_number):
     pass
 
 # disarm equipment
-def disarm(p, item_number):
+def disarm(player, item_number):
     pass
 
 # disassemble equipment or Potion
-def disassemble(p, item_number):
+def disassemble(player, item_number):
     pass
 
 # drink potions
-def drink(p, item_number):
-    p.drink(item_number)
+def drink(player, item_number):
+    player.drink(item_number)
     if game_inventory[int(item_number)-1].number > 1:
         game_inventory[int(item_number)-1].number_counter_minus()
     else:
         del game_inventory[int(item_number)-1]
 
 # show item Details
-def details(p, item_number):
+def details(player, item_number):
     return game_inventory[int(item_number)].show_details()
         
 # senseless action

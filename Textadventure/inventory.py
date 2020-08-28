@@ -4,6 +4,16 @@ from items.items import drop_list
 
 game_inventory = []
 
+armor_categorys = ["Helm", "Chest Armor", "Belt",
+                   "Boot", "Glove", "Pant",
+                   "Shield", "Shoulder"]
+
+non_armor_categorys = ["Amulet", "Ring"]
+
+weapon_categorys = ["Sword", "Axe", "Mace",
+                    "Spear", "Tow-Handed Sword", "Tow-Handed Axe",
+                    "Tow-Handed Mace"]
+
 armor_list = []
 non_armor_list = []
 weapon_list = []
@@ -31,7 +41,7 @@ def inventory(player, maps):
     print(6* "-" + "Inventory" + 6* "-")
     for i in range(len(game_inventory)):
         print(str(i+1) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
-        inventory_Commands.update({str(i):senseless})
+        inventory_Commands.update({str(int(i)+1):senseless})
     while True:
         inventory_command = input("Inventory >>>").lower().split(" ")
         if inventory_command[0] in inventory_Commands:
@@ -52,7 +62,36 @@ def inventory(player, maps):
 
 # equip equipment
 def equip(player, item_number):
-    pass
+    # Is it an item, an armor item
+    if game_inventory[int(item_number)].equipment_category in armor_categorys:
+        equip_c(armor_list, item_number)
+    # Is it an item, an non armor item
+    elif game_inventory[int(item_number)].equipment_category in non_armor_categorys:
+        equip_c(non_armor_list, item_number)
+    # Is it an item, an Weapon item
+    elif game_inventory[int(item_number)].equipment_category in weapon_categorys:
+        equip_c(weapon_list, item_number)
+    # Is it an item for equip
+    else:
+        print("Das kann man nicht anziehen")
+
+def equip_c(equip_ca, item_number):
+    # The list is greater than one
+    if len(equip_ca) > 0:
+        for item in equip_ca:
+            # Is an item of the same category in the list
+            if item.equipment_category == game_inventory[int(item_number)].equipment_category:
+                # Append item from equip_ca to game_inventory
+                game_inventory.append(equip_ca[equip_ca.index(item)])
+                del equip_ca[equip_ca.index(item)]
+                equip_ca.append(game_inventory(int(item_number)))
+                del game_inventory[int(item_number)]
+            else:
+                equip_ca.append(game_inventory(int(item_number)))
+                del game_inventory[int(item_number)]
+    else:    
+        equip_ca.append(game_inventory[int(item_number)])
+        del game_inventory[int(item_number)]
 
 # disarm equipment
 def disarm(player, item_number):
@@ -65,10 +104,10 @@ def disassemble(player, item_number):
 # drink potions
 def drink(player, item_number):
     player.drink(item_number)
-    if game_inventory[int(item_number)-1].number > 1:
-        game_inventory[int(item_number)-1].number_counter_minus()
+    if game_inventory[int(item_number)].number > 1:
+        game_inventory[int(item_number)].number_counter_minus()
     else:
-        del game_inventory[int(item_number)-1]
+        del game_inventory[int(item_number)]
 
 # show item Details
 def details(player, item_number):

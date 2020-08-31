@@ -1,31 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from items.basic_item import basic_item
+
 class HealthPotion():
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_health):
+        basic_item.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth)
         self.regenerated_health = regenerated_health
-        self.level = level
-        self.number = number
-        self.name = name
-        self.weight = weight
-        self.worth = worth
-        self.equipment_category = equipment_category
-        self.drop_chanc_category = drop_chanc_category
-        
-    def number_counter_plus(self):
-        self.number = self.number + 1
-        
-    def number_counter_minus(self):
-        self.number = self.number - 1
-        
-    def show_details(self):
-        print(6* "-" + str(self.name) + 6* "-")
-        print("Level: " + str(self.level))
-        print("Ausrüstungs_Seltenheit: " + str(self.drop_chanc_category))
-        print("Kategorie: " + str(self.equipment_category))
-        print("Number: " + str(self.number))
-        print("Heakth regeneration: " + str(self.regenerated_health))
-        print("Weight: " + str(self.weight))
-        print("Worth: " + str(self.worth))
         
 class HealthPotion_1(HealthPotion):
     def __init__(self):

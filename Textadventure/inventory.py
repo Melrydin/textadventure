@@ -4,18 +4,18 @@ from items.items import drop_list
 
 game_inventory = []
 
-armor_categorys = ["Helm", "Chest Armor", "Belt",
-                   "Boot", "Glove", "Pant",
-                   "Shield", "Shoulder"]
+armor_categorys = ["helm", "chest_armor", "belt",
+                   "boot", "glove", "pant",
+                   "shield", "shoulder"]
 
-non_armor_categorys = ["Amulet", "Ring"]
+non_armor_categorys = ["amulet", "ring"]
 
-weapon_categorys = ["Sword", "Axe", "Mace",
-                    "Spear", "Tow-Handed Sword", "Tow-Handed Axe",
-                    "Tow-Handed Mace"]
-
+weapon_categorys = ["sword", "axe", "mace",
+                    "spear", "tow_handed_sword", "tow_handed_axe",
+                    "tow_handed_mace"]
+ring_list = []
 armor_list = []
-non_armor_list = []
+non_armor_list = [ring_list]
 weapon_list = []
 
 equip_list = [armor_list,non_armor_list,weapon_list]
@@ -39,16 +39,19 @@ def pickup(player, maps):
 def inventory(player, maps):
     print("Gib \"hilfe\" ein um eine uebersicht der Inventar Befehle zu erhalten.\n")
     print(6* "-" + "Inventory" + 6* "-")
-    for i in range(len(game_inventory)):
-        print(str(i+1) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
-        inventory_Commands.update({str(int(i)+1):senseless})
+    len_game_inventory = len(game_inventory)
+    for i in range(len_game_inventory):
+        print(str(i) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
+        inventory_Commands.update({str(int(i)):senseless})
     while True:
         inventory_command = input("Inventory >>>").lower().split(" ")
         if inventory_command[0] in inventory_Commands:
             if len(inventory_command) > 1:
                 inventory_Commands[inventory_command[1]](player, inventory_command[0])
-            else:
+            elif:
                 inventory_Commands[inventory_command[0]]()
+            else:
+                senseless()
         elif inventory_command[0] == "quit":
             break
         else:
@@ -56,8 +59,8 @@ def inventory(player, maps):
         print("")
         print(6* "-" + "Inventory" + 6* "-")
         for i in range(len(game_inventory)):
-            print(str(i+1) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
-    for i in range(len(game_inventory)):
+            print(str(i) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
+    for i in range(len_game_inventory):
         inventory_Commands.pop(str(i), None)
 
 # equip equipment
@@ -65,6 +68,9 @@ def equip(player, item_number):
     # Is it an item, an armor item
     if game_inventory[int(item_number)].equipment_category in armor_categorys:
         equip_c(armor_list, item_number)
+    # Is it an item, an ring
+    elif game_inventory[int(item_number)].equipment_category == "ring":
+        ring_number(ring_list, item_number)
     # Is it an item, an non armor item
     elif game_inventory[int(item_number)].equipment_category in non_armor_categorys:
         equip_c(non_armor_list, item_number)
@@ -74,6 +80,8 @@ def equip(player, item_number):
     # Is it an item for equip
     else:
         print("Das kann man nicht anziehen")
+    # sort inventory to name
+    game_inventory.sort(key=lambda item: item.name, reverse=True)
 
 def equip_c(equip_ca, item_number):
     # The list is greater than one
@@ -84,18 +92,35 @@ def equip_c(equip_ca, item_number):
                 # Append item from equip_ca to game_inventory
                 game_inventory.append(equip_ca[equip_ca.index(item)])
                 del equip_ca[equip_ca.index(item)]
-                equip_ca.append(game_inventory(int(item_number)))
+                equip_ca.append(game_inventory[int(item_number)])
                 del game_inventory[int(item_number)]
-            else:
-                equip_ca.append(game_inventory(int(item_number)))
-                del game_inventory[int(item_number)]
+                break
     else:    
         equip_ca.append(game_inventory[int(item_number)])
-        del game_inventory[int(item_number)]
+        del game_inventory[int(item_number)]      
 
 # disarm equipment
-def disarm(player, item_number):
-    pass
+def disarm(player, equipment_category):
+    for e_cat in equip_list:
+        for equipment in e_cat:
+            if equipment.equipment_category == equipment_category:
+                game_inventory.append(equipment)
+                e_cat.remove(equipment)
+    # sort inventory to name
+    game_inventory.sort(key=lambda item: item.name, reverse=True)
+
+# equip rings
+def ring_number(equip_ca, item_number):
+    # Append item from equip_ca to game_inventory
+    if len(ring_list) == 2:
+        ring_n = input("Ring Nummer: ")
+        game_inventory.append(equip_ca[ring_n])
+        del equip_ca[ring_n]
+        equip_ca.append(game_inventory[int(item_number)])
+        del game_inventory[int(item_number)]
+    else:    
+        equip_ca.append(game_inventory[int(item_number)])
+        del game_inventory[int(item_number)] 
 
 # disassemble equipment or Potion
 def disassemble(player, item_number):
@@ -103,11 +128,14 @@ def disassemble(player, item_number):
 
 # drink potions
 def drink(player, item_number):
+    # call drink function in player from enemies modull
     player.drink(item_number)
     if game_inventory[int(item_number)].number > 1:
         game_inventory[int(item_number)].number_counter_minus()
     else:
         del game_inventory[int(item_number)]
+    # sort inventory to name
+    game_inventory.sort(key=lambda item: item.name, reverse=True)
 
 # show item Details
 def details(player, item_number):
@@ -134,5 +162,22 @@ inventory_Commands = {
     "disarm": disarm,
     "drink": drink,
     "disassemble": disassemble,
-    "details": details
-    }
+    "details": details,
+    "---disarm---": senseless,
+    "helm": senseless,
+    "chest_armor": senseless,
+    "belt": senseless,
+    "boot": senseless,
+    "glove": senseless,
+    "pant": senseless,
+    "shield": senseless, 
+    "shoulder": senseless,
+    "amulet": senseless, 
+    "ring": senseless, 
+    "sword": senseless, 
+    "axe": senseless, 
+    "mace": senseless,
+    "spear": senseless,
+    "tow_handed_sword": senseless, 
+    "tow_handed_axe": senseless,
+    "tow_handed_mace": senseless}

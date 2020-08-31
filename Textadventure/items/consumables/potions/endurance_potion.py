@@ -1,31 +1,11 @@
 # -*- coding: utf-8 -*-
 
-class EndurancePotion():
+from items.basic_item import basic_item
+
+class EndurancePotion(basic_item):
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_endurance):
+        basic_item.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth)
         self.regenerated_endurance = regenerated_endurance
-        self.level = level
-        self.number = number
-        self.name = name
-        self.weight = weight
-        self.worth = worth
-        self.equipment_category = equipment_category
-        self.drop_chanc_category = drop_chanc_category
-        
-    def number_counter_plus(self):
-        self.number = self.number + 1
-        
-    def number_counter_minus(self):
-        self.number = self.number - 1
-        
-    def show_details(self):
-        print(6* "-" + str(self.name) + 6* "-")
-        print("Level: " + str(self.level))
-        print("Ausrüstungs_Seltenheit: " + str(self.drop_chanc_category))
-        print("Kategorie: " + str(self.equipment_category))
-        print("Number: " + str(self.number))
-        print("Endurance regeneration: " + str(self.regenerated_endurance))
-        print("Weight: " + str(self.weight))
-        print("Worth: " + str(self.worth))
 
 class EndurancePotion_1(EndurancePotion):
     def __init__(self):

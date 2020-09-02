@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import random
+from random import randint
 
 def armor(level):
-    armor_value = random.randint(5, 20) * level
+    armor_value = randint(5, 20) * level
     return armor_value
     
 def property_1(level):
@@ -42,13 +42,13 @@ class basic_item():
         if self.equipment_category != "Potion":
             print("Armor: " + str(self.armor))
             print("Magical property: " + self.property_1)
-            if self.drop_chanc_category == "uncommon" or "rara" or "super_rare":
+            if self.drop_chanc_category in ["uncommon", "rara", "super_rare"]:
                 print("Magical property: " + self.property_2)
-            if self.drop_chanc_category == "rare" or "super_rare":
+            if self.drop_chanc_category in ["rare", "super_rare"]:
                 print("Magical property: " + self.property_3)
             if self.drop_chanc_category == "super_rare":
                 print("Magical property: " + self.property_4)
-            print("Durability: " + self.durability + "/" + self.max_durability)
+            print("Durability: " + str(self.durability) + "/" + str(self.max_durability))
         else:
             if "Enduranc" in self.name:
                 print("Endurance regeneration: " + str(self.regenerated_endurance))

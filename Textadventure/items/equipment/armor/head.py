@@ -18,7 +18,8 @@ class rare_head_1(rare):
 class super_rare_head_1(super_rare):
     def __init__(self):
         super_rare.__init__(self, 5, "super_rare", "helm", 1, "Head_4", 5, 10, 10, armor(5), property_1(5), property_2(5), property_3(5), property_4(5))
-        
+
+
 common_head_list = [common_head_1()]
 
 uncommon_head_list = [uncommon_head_1()]

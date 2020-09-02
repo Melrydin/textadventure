@@ -18,7 +18,8 @@ class EndurancePotion_2(EndurancePotion):
 class EndurancePotion_3(EndurancePotion):
     def __init__(self):
         EndurancePotion.__init__(self, 10, "common", "Potion", 1, "EndurancePotion_3", 1, 3, 40)
-    
+
+
 endurance_potion_list = [EndurancePotion_1(), EndurancePotion_2(), EndurancePotion_3()]
 
 endurance_potion_dic = {"common": endurance_potion_list,

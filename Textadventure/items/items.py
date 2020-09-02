@@ -8,13 +8,16 @@ from items.consumables.potions.endurance_potion import endurance_potion_dic
 from items.consumables.potions.health_potion import health_potion_dic
 from items.consumables.potions.mana_potion import mana_potion_dic
 from items.equipment.armor.head import head_dic
+from items.equipment.non_armor.amulet import amulet_dic
+from items.equipment.non_armor.ring import ring_dic
 
 potion_list = [mana_potion_dic, endurance_potion_dic, health_potion_dic]
 
 armor_non_equip_list = [head_dic]
+non_armor_non_equip_list = [amulet_dic, ring_dic]
 
 drop_list = []
-item_list = [potion_list, armor_non_equip_list]
+item_list = [potion_list, armor_non_equip_list, non_armor_non_equip_list]
 
 # roll droop changs and loot
 def loot():

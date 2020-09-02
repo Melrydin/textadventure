@@ -13,9 +13,8 @@ non_armor_categorys = ["amulet", "ring"]
 weapon_categorys = ["sword", "axe", "mace",
                     "spear", "tow_handed_sword", "tow_handed_axe",
                     "tow_handed_mace"]
-ring_list = []
 armor_list = []
-non_armor_list = [ring_list]
+non_armor_list = []
 weapon_list = []
 
 equip_list = [armor_list,non_armor_list,weapon_list]
@@ -48,7 +47,7 @@ def inventory(player, maps):
         if inventory_command[0] in inventory_Commands:
             if len(inventory_command) > 1:
                 inventory_Commands[inventory_command[1]](player, inventory_command[0])
-            elif:
+            elif len(inventory_command) == 1:
                 inventory_Commands[inventory_command[0]]()
             else:
                 senseless()
@@ -70,6 +69,7 @@ def equip(player, item_number):
         equip_c(armor_list, item_number)
     # Is it an item, an ring
     elif game_inventory[int(item_number)].equipment_category == "ring":
+        ring_list = []
         ring_number(ring_list, item_number)
     # Is it an item, an non armor item
     elif game_inventory[int(item_number)].equipment_category in non_armor_categorys:
@@ -110,17 +110,27 @@ def disarm(player, equipment_category):
     game_inventory.sort(key=lambda item: item.name, reverse=True)
 
 # equip rings
-def ring_number(equip_ca, item_number):
-    # Append item from equip_ca to game_inventory
+def ring_number(ring_list, item_number):
+    # delete ring from the non_armor_list and attach it to the ring_list
+    for item in non_armor_list:
+        if item.equipment_category == "Ring":
+            ring_list.append(item)
+            non_armor_list.remove(item)
+    # ring_list is full 
     if len(ring_list) == 2:
         ring_n = input("Ring Nummer: ")
-        game_inventory.append(equip_ca[ring_n])
-        del equip_ca[ring_n]
-        equip_ca.append(game_inventory[int(item_number)])
+        game_inventory.append(ring_list[ring_n])
+        del ring_list[ring_n]
+        # Append item from equip_ca to game_inventory
+        ring_list.append(game_inventory[int(item_number)])
         del game_inventory[int(item_number)]
     else:    
-        equip_ca.append(game_inventory[int(item_number)])
-        del game_inventory[int(item_number)] 
+        ring_list.append(game_inventory[int(item_number)])
+        del game_inventory[int(item_number)]
+    # attach it a rings from ring_list to non_armor_list
+    for ring in ring_list:
+        non_armor_list.append(ring_list[ring])
+    ring_list.clear
 
 # disassemble equipment or Potion
 def disassemble(player, item_number):

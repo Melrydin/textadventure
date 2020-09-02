@@ -18,7 +18,8 @@ class ManaPotion_2(ManaPotion):
 class ManaPotion_3(ManaPotion):
     def __init__(self):
         ManaPotion.__init__(self, 10, "common", "Potion", 1, "ManaPotion_3", 1, 3, 40)
-        
+
+    
 mana_potion_list = [ManaPotion_1(), ManaPotion_2(), ManaPotion_3()]
         
 mana_potion_dic = {"common": mana_potion_list,

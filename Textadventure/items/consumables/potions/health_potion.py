@@ -18,6 +18,7 @@ class HealthPotion_2(HealthPotion):
 class HealthPotion_3(HealthPotion):
     def __init__(self):
         HealthPotion.__init__(self, 10, "common", "Potion", 1, "HealthPotion_3", 1, 3, 40)
+
         
 health_potion_list = [HealthPotion_1(), HealthPotion_2(), HealthPotion_3()]
 

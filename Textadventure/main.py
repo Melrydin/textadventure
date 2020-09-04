@@ -114,6 +114,8 @@ if __name__ == "__main__":
             # print drop names
             for item in drop_list:
                 print(item.name)
+            if command[0] != "pickup":
+                drop_list.clear()
         elif command[0] not in Commands_not_print_state:
             maps.print_state()
         else:

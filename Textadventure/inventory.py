@@ -118,6 +118,9 @@ def ring_number(ring_list, item_number):
             non_armor_list.remove(item)
     # ring_list is full 
     if len(ring_list) == 2:
+        for i in range(len(ring_list)):
+            for ring in ring_list:
+                print(str(i) + ": " + ring.name)
         ring_n = input("Ring Nummer: ")
         game_inventory.append(ring_list[ring_n])
         del ring_list[ring_n]
@@ -129,7 +132,7 @@ def ring_number(ring_list, item_number):
         del game_inventory[int(item_number)]
     # attach it a rings from ring_list to non_armor_list
     for ring in ring_list:
-        non_armor_list.append(ring_list[ring])
+        non_armor_list.append(ring)
     ring_list.clear
 
 # disassemble equipment or Potion

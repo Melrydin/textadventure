@@ -2,7 +2,7 @@
 
 from items.basic_item import basic_item
 
-class HealthPotion():
+class HealthPotion(basic_item):
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_health):
         basic_item.__init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth)
         self.regenerated_health = regenerated_health

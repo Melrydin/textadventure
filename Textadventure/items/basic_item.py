@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from random import randint
+from .equipment_properties import *
 
 
 armor_categorys = ["helm", "chest_armor", "belt",
@@ -12,7 +13,10 @@ def armor(level):
     return armor_value
     
 def property_1(level):
-    return("Proberty_1")
+    stat = main_properties[randint(0, len(main_properties)-1)]
+    stat_name = stat[0]
+    value = randint(stat[1], stat[2]) * level
+    return [stat_name, value]
 
 def property_2(level):
     return("Proberty_2")
@@ -47,13 +51,14 @@ class basic_item():
         if self.equipment_category in [armor_categorys]:
             print("Armor: " + str(self.armor))
         if self.equipment_category != "Potion":
-            print("Magical property: " + self.property_1)
+            print("Magical property: " + self.property_1[0] + " " + str(self.property_1[1]))
             if self.drop_chanc_category in ["uncommon", "rara", "super_rare"]:
-                print("Magical property: " + self.property_2)
+                print("Magical property: " + self.property_2[0] + " " + str(self.property_2[1]))
             if self.drop_chanc_category in ["rare", "super_rare"]:
-                print("Magical property: " + self.property_3)
+                print("Magical property: " + self.property_3[0] + " " + str(self.property_3[1]))
             if self.drop_chanc_category == "super_rare":
-                print("Magical property: " + self.property_4)
+                print("Magical property: " + self.property_4[0] + " " + str(self.property_4[1]))
+            print("Durability: " + str(self.durability) + "/" + str(self.max_durability))
         else:
             if "Enduranc" in self.name:
                 print("Endurance regeneration: " + str(self.regenerated_endurance))
@@ -61,7 +66,6 @@ class basic_item():
                 print("Mana regeneration: " + str(self.regenerated_mana))
             elif "Health" in self.name:
                 print("Health regeeneration: " + str(self.regenerated_health))
-        print("Durability: " + str(self.durability) + "/" + str(self.max_durability))
         print("Weight: " + str(self.weight))
         print("Worth: " + str(self.worth))
             

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from items.basic_item import common_armor, uncommon_armor, rare_armor, super_rare_armor, armor, property_1, property_2, property_3, property_4
+from items.basic_item import *
 
 
 class common_head_1(common_armor):

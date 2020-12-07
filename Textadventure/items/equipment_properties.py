@@ -13,12 +13,12 @@ main_properties = [["Dexterity", 5, 100, None, True, main_properties_item_stats]
                    ["Intelligence", 5, 100, None, True, main_properties_item_stats],
                    ["Vitality", 5, 100, None, True, main_properties_item_stats]]
 
-primary_properties = [["Critical hit Chance", 5, 10, None, True, ["glove","amulet", "ring","helm"],
+primary_properties = [["Critical hit Chance", 5, 10, None, True, ["glove","amulet", "ring","helm"]],
                       ["Critical hit Danage", 25, 50, None, True, [""]],
                       ["Dodge Chance", 0, 10, None, True, [""]],
                       ["Armor", 100, 250, None, True, [""]],
-                      ["Total Life Bonus", 10, 15, None, True, [""],
-                      ["Resource Cost Reduction", 8, 10, None, True, [""]]
+                      ["Total Life Bonus", 10, 15, None, True, [""]],
+                      ["Resource Cost Reduction", 8, 10, None, True, [""]]]
 
                        
 sekunder_properties = [["Physical Resistance", 50, 100, None, True, [""]],

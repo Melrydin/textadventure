@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from items.basic_item import common, uncommon, rare, super_rare, property_1, property_2, property_3, property_4
+from items.basic_item import *
 
 class common_ring_1(common):
     def __init__(self):

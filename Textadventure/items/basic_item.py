@@ -19,13 +19,22 @@ def property_1(level):
     return [stat_name, value]
 
 def property_2(level):
-    return("Proberty_2")
+    stat = main_properties[randint(0, len(main_properties)-1)]
+    stat_name = stat[0]
+    value = randint(stat[1], stat[2]) * level
+    return [stat_name, value]
 
 def property_3(level):
-    return("Proberty_3")
+    stat = primary_properties[randint(0, len(main_properties)-1)]
+    stat_name = stat[0]
+    value = randint(stat[1], stat[2]) * level
+    return [stat_name, value]
 
 def property_4(level):
-    return("Proberty_4")
+    stat = primary_properties[randint(0, len(main_properties)-1)]
+    stat_name = stat[0]
+    value = randint(stat[1], stat[2]) * level
+    return [stat_name, value]
 
 class basic_item():
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth):

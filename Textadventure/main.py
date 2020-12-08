@@ -65,6 +65,10 @@ def run_away(player, maps):
 def print_help(player, maps):
     for command in Commands:
         print(command)
+        
+def clear(command):
+    if len(drop_list) > 1 and command not in ["pickup", "fight"]:
+        drop_list.clear()
 
 # Player Commands
 Commands = {
@@ -101,8 +105,10 @@ if __name__ == "__main__":
         if command[0] in Commands:
             if len(command) > 1:
                 Commands[command[0]](player, maps, command[1:])
+                clear(command[0])
             else:
                 Commands[command[0]](player, maps)
+                clear(command[0])
         # Intercept wrong input
         elif command[0] not in Commands:
             print("Du rennst im Keis und tuhst garnichts.")
@@ -116,5 +122,3 @@ if __name__ == "__main__":
                 print(item.name)
         elif command[0] not in Commands_not_print_state:
             maps.print_state()
-        else:
-            drop_list.clear()

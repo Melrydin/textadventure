@@ -47,13 +47,13 @@ def fight(player, maps):
             loot()
         for enemie in enemies:
             player.get_hit(enemie.attack)
-        print("Du wurdest verwundet und hast noch " + str(player.hp) + " HP")
+        print("Du wurdest verwundet und hast noch {} HP".format(player.hp))
 
 # regenerate HP
 def rest(player, maps):
     if len(maps.get_enemies()) == 0:
         player.rest()
-        print("Du hast nun wieder " + str(int(player.hp)) + " HP")
+        print("Du hast nun wieder {} HP".format(player.hp))
     else:
         print("Du kannst dich im Kampf nicht ausruhen")
 

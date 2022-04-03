@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from items.basic_item import basic_item
+from items.items import basic_item
 
 class ManaPotion(basic_item):
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_mana):
@@ -21,9 +21,4 @@ class ManaPotion_3(ManaPotion):
 
     
 mana_potion_list = [ManaPotion_1(), ManaPotion_2(), ManaPotion_3()]
-        
-mana_potion_dic = {"common": mana_potion_list,
-                    "uncommon": mana_potion_list,
-                    "rare": mana_potion_list,
-                    "super rare": mana_potion_list}
 

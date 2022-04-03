@@ -37,12 +37,14 @@ def pickup(player, maps):
 # look in your inventory
 def inventory(player, maps):
     print("Gib \"hilfe\" ein um eine uebersicht der Inventar Befehle zu erhalten.\n")
-    print(6* "-" + "Inventory" + 6* "-")
     len_game_inventory = len(game_inventory)
     for i in range(len_game_inventory):
-        print(str(i) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
         inventory_Commands.update({str(int(i)):senseless})
     while True:
+        print("")
+        print(6* "-" + "Inventory" + 6* "-")
+        for i in range(len(game_inventory)):
+            print("{}: {}x{}".format(i,game_inventory[i].number,game_inventory[i].name))
         inventory_command = input("Inventory >>>").lower().split(" ")
         if inventory_command[0] in inventory_Commands:
             if len(inventory_command) > 1:
@@ -55,10 +57,6 @@ def inventory(player, maps):
             break
         else:
             senseless()
-        print("")
-        print(6* "-" + "Inventory" + 6* "-")
-        for i in range(len(game_inventory)):
-            print(str(i) + ": " + str(game_inventory[i].number) + "x" + game_inventory[i].name)
     for i in range(len_game_inventory):
         inventory_Commands.pop(str(i), None)
 

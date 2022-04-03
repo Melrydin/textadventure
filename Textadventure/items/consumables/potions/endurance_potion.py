@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from items.basic_item import basic_item
+from items.items import basic_item
 
 class EndurancePotion(basic_item):
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_endurance):
@@ -21,8 +21,3 @@ class EndurancePotion_3(EndurancePotion):
 
 
 endurance_potion_list = [EndurancePotion_1(), EndurancePotion_2(), EndurancePotion_3()]
-
-endurance_potion_dic = {"common": endurance_potion_list,
-                    "uncommon": endurance_potion_list,
-                    "rare": endurance_potion_list,
-                    "super rare": endurance_potion_list}

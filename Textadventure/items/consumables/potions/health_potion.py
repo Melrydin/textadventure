@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from items.basic_item import basic_item
+from items.items import basic_item
 
 class HealthPotion(basic_item):
     def __init__(self, level, drop_chanc_category, equipment_category, number, name, weight, worth, regenerated_health):
@@ -21,8 +21,3 @@ class HealthPotion_3(HealthPotion):
 
         
 health_potion_list = [HealthPotion_1(), HealthPotion_2(), HealthPotion_3()]
-
-health_potion_dic = {"common": health_potion_list,
-                    "uncommon": health_potion_list,
-                    "rare": health_potion_list,
-                    "super rare": health_potion_list}
